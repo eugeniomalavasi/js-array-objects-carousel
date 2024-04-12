@@ -102,3 +102,16 @@ function prevObj() {
   allThumbs[activeThumb].classList.add("active");
 }
 
+// AUTOPLAY
+// btn to start-pause autoplay
+const playPauseBtn = document.getElementById("my-stop-button").addEventListener("click", playPause)
+function playPause() {
+  let time = false;
+  console.log(time);
+  if (time === false) {
+    setInterval(nextObj,1000)
+    time = true; 
+  } else if (time === true) {
+    clearInterval()
+  }
+  }

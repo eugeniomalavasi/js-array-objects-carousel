@@ -55,6 +55,10 @@ allCards[activeImg].classList.add("active")
 
 function activeObj() {
   allCards[activeImg].classList.remove("active");
+  if (activeImg < images.length - 1) {
   activeImg++;
-  allCards[activeImg].classList.add("active")
+  } else {
+    activeImg = 0;
+  }
+  allCards[activeImg].classList.add("active");
 }

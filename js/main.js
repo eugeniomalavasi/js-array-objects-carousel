@@ -27,6 +27,7 @@ const images = [
 ];
 
 let imgContainer = document.querySelector(".my-carousel-images");
+let thumbContainer = document.querySelector(".my-thumbnails");
 images.forEach((curObj, index) => {
   console.log(curObj.image);
   imgContainer.innerHTML +=
@@ -45,6 +46,14 @@ images.forEach((curObj, index) => {
                   </div>
                 </div>
 `
+// THUMBNAILS
+
+thumbContainer.innerHTML += 
+`<img
+class="img-fluid my-thumbnail active"
+src="./${curObj.image}"
+alt=${curObj.text + "picture"}
+/>`
 })
 
 // next button dom selection
@@ -80,3 +89,4 @@ function prevObj() {
   }
   allCards[activeImg].classList.add("active")
 }
+

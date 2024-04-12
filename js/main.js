@@ -50,9 +50,9 @@ images.forEach((curObj, index) => {
 
 thumbContainer.innerHTML += 
 `<img
-class="img-fluid my-thumbnail active"
+class="img-fluid my-thumbnail"
 src="./${curObj.image}"
-alt=${curObj.text + "picture"}
+alt="${curObj.text + "picture"}"
 />`
 })
 
@@ -60,33 +60,45 @@ alt=${curObj.text + "picture"}
 const nextBtn = document.getElementById("next_btn").addEventListener("click", nextObj)
 // select every DOM obj already created
 const allCards = document.querySelectorAll(".my-carousel-item");
+// select every DOM obj thumb already created
+const allThumbs = document.querySelectorAll(".my-thumbnail");
 // variable to set the index value of active img
 let activeImg = 0;
+// variable to set the index value of active thumbnail
+let activeThumb = 0;
 // add the class active when the index is 0
 allCards[activeImg].classList.add("active")
+allThumbs[activeThumb].classList.add("active")
 
 /**
  * remove the active class from the first element, and add to the next index
  */
 function nextObj() {
   allCards[activeImg].classList.remove("active");
+  allThumbs[activeThumb].classList.remove("active")
   if (activeImg < images.length - 1) {
   activeImg++;
+  activeThumb++;
   } else {
     activeImg = 0;
+  activeThumb = 0;
   }
   allCards[activeImg].classList.add("active");
+  allThumbs[activeThumb].classList.add("active")
 }
 
 const prevBtn = document.getElementById("previous_btn").addEventListener("click", prevObj)
 function prevObj() {
   allCards[activeImg].classList.remove("active")
+  allThumbs[activeThumb].classList.remove("active")
   if (activeImg < images.length && activeImg !== 0) {
     activeImg--;
+    activeThumb--;
   } else if (activeImg <= 0) {
     activeImg = images.length -1;
-    console.log(activeImg);
+    activeThumb = images.length -1;
   }
-  allCards[activeImg].classList.add("active")
+  allCards[activeImg].classList.add("active");
+  allThumbs[activeThumb].classList.add("active");
 }
 

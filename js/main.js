@@ -47,13 +47,19 @@ images.forEach((curObj, index) => {
 `
 })
 
-const nextBtn = document.getElementById("next_btn").addEventListener("click", activeObj)
-
+// next button dom selection
+const nextBtn = document.getElementById("next_btn").addEventListener("click", nextObj)
+// select every DOM obj already created
 const allCards = document.querySelectorAll(".my-carousel-item");
+// variable to set the index value of active img
 let activeImg = 0;
+// add the class active when the index is 0
 allCards[activeImg].classList.add("active")
 
-function activeObj() {
+/**
+ * remove the active class from the first element, and add to the next index
+ */
+function nextObj() {
   allCards[activeImg].classList.remove("active");
   if (activeImg < images.length - 1) {
   activeImg++;
@@ -61,4 +67,16 @@ function activeObj() {
     activeImg = 0;
   }
   allCards[activeImg].classList.add("active");
+}
+
+const prevBtn = document.getElementById("previous_btn").addEventListener("click", prevObj)
+function prevObj() {
+  allCards[activeImg].classList.remove("active")
+  if (activeImg < images.length && activeImg !== 0) {
+    activeImg--;
+  } else if (activeImg <= 0) {
+    activeImg = images.length -1;
+    console.log(activeImg);
+  }
+  allCards[activeImg].classList.add("active")
 }

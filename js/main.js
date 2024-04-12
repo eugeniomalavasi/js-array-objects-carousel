@@ -30,18 +30,31 @@ let imgContainer = document.querySelector(".my-carousel-images");
 images.forEach((curObj, index) => {
   console.log(curObj.image);
   imgContainer.innerHTML +=
-  `<div class="my-carousel-item active" carousel-item="1">
-  <img
-    class="img-fluid"
-    src="./${curObj.image}"
-    alt=${curObj.text + "picture"}
-  />
-  <div class="item-description px-3">
-    <h2>${curObj.title}
-    </h2>
-    <p>
-    ${curObj.text}
-    </p>
-  </div>
-</div>`
+    `
+  <div class="my-carousel-item" carousel-item="1">
+                  <img
+                    class="img-fluid"
+                    src="./${curObj.image}"
+                    alt=${curObj.text + "picture"}
+                  />
+                  <div class="item-description px-3">
+                    <h2>Marvel's Spiderman Miles Morale</h2>
+                    <p>
+                    ${curObj.text}
+                    </p>
+                  </div>
+                </div>
+`
 })
+
+const nextBtn = document.getElementById("next_btn").addEventListener("click", activeObj)
+
+const allCards = document.querySelectorAll(".my-carousel-item");
+let activeImg = 0;
+allCards[activeImg].classList.add("active")
+
+function activeObj() {
+  allCards[activeImg].classList.remove("active");
+  activeImg++;
+  allCards[activeImg].classList.add("active")
+}

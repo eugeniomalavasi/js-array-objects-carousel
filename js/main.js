@@ -56,8 +56,29 @@ alt="${curObj.text + "picture"}"
 />`
 })
 
-// next button dom selection
-let nextBtn = document.getElementById("next_btn").addEventListener("click", nextObj)
+// control to check if the order must be forward or backwards
+let orderFlag = "false";
+
+  // ORDER BUTTON
+  let orderBtn = document.getElementById("my-order-button").addEventListener("click", myOrder)
+  function myOrder() {
+    let control = orderFlag;
+    if (orderFlag === "false") {
+      control = "true";
+      orderFlag = control;
+    } else {
+      orderFlag = "false";
+    }
+  }
+  let nextBtn;
+  let prevBtn;
+if (orderFlag === "false") {
+  nextBtn = document.getElementById("next_btn").addEventListener("click", nextObj)
+  prevBtn = document.getElementById("previous_btn").addEventListener("click", prevObj)
+} else if (orderFlag !== "false") {
+  nextBtn = document.getElementById("next_btn").addEventListener("click", prevObj)
+  prevBtn = document.getElementById("previous_btn").addEventListener("click", nextObj)
+}
 // select every DOM obj already created
 const allCards = document.querySelectorAll(".my-carousel-item");
 // select every DOM obj thumb already created
@@ -69,6 +90,8 @@ let activeThumb = 0;
 // add the class active when the index is 0
 allCards[activeImg].classList.add("active")
 allThumbs[activeThumb].classList.add("active")
+
+
 
 /**
  * remove the active class from the first element, and add to the next index
@@ -87,7 +110,6 @@ function nextObj() {
   allThumbs[activeThumb].classList.add("active")
 }
 
-let prevBtn = document.getElementById("previous_btn").addEventListener("click", prevObj)
 function prevObj() {
   allCards[activeImg].classList.remove("active")
   allThumbs[activeThumb].classList.remove("active")
@@ -118,11 +140,3 @@ function playPause() {
     console.log(time);  
   }
   } 
-
-  // ORDER BUTTON
-  let orderBtn = document.getElementById("my-order-button").addEventListener("click", myOrder)
-  function myOrder() {
-    console.log("click");
-    prevBtn = document.getElementById("next_btn").addEventListener("click", nextObj);
-    nextBtn = document.getElementById("previous_btn").addEventListener("click", prevObj);
-  }

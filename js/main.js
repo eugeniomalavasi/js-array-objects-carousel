@@ -27,8 +27,8 @@ const images = [
 ];
 
 let imgContainer = document.querySelector(".my-carousel-images");
-let thumbContainer = document.querySelector(".my-thumbnails");
-images.forEach((curObj, index) => {
+let thumbContainer = document.querySelector(".my-thumbnails")
+images.forEach((curObj) => {
   console.log(curObj.image);
   imgContainer.innerHTML +=
     `
@@ -57,11 +57,11 @@ alt="${curObj.text + "picture"}"
 })
 
 // next button dom selection
-const nextBtn = document.getElementById("next_btn").addEventListener("click", nextObj)
+let nextBtn = document.getElementById("next_btn").addEventListener("click", nextObj)
 // select every DOM obj already created
 const allCards = document.querySelectorAll(".my-carousel-item");
 // select every DOM obj thumb already created
-const allThumbs = document.querySelectorAll(".my-thumbnail");
+const allThumbs = document.querySelectorAll(".my-thumbnail")
 // variable to set the index value of active img
 let activeImg = 0;
 // variable to set the index value of active thumbnail
@@ -87,7 +87,7 @@ function nextObj() {
   allThumbs[activeThumb].classList.add("active")
 }
 
-const prevBtn = document.getElementById("previous_btn").addEventListener("click", prevObj)
+let prevBtn = document.getElementById("previous_btn").addEventListener("click", prevObj)
 function prevObj() {
   allCards[activeImg].classList.remove("active")
   allThumbs[activeThumb].classList.remove("active")
@@ -102,16 +102,27 @@ function prevObj() {
   allThumbs[activeThumb].classList.add("active");
 }
 
-// AUTOPLAY
+// START STOP 
+let time;
+let flag = false;
 // btn to start-pause autoplay
 const playPauseBtn = document.getElementById("my-stop-button").addEventListener("click", playPause)
 function playPause() {
-  let time = false;
-  console.log(time);
-  if (time === false) {
-    setInterval(nextObj,1000)
-    time = true; 
-  } else if (time === true) {
-    clearInterval()
+  if (flag === false) {
+    time = setInterval(nextObj,1000);
+    flag = true;
+    console.log(time);  
+  } else {
+    clearInterval(time);
+    flag = false;
+    console.log(time);  
   }
+  } 
+
+  // ORDER BUTTON
+  let orderBtn = document.getElementById("my-order-button").addEventListener("click", myOrder)
+  function myOrder() {
+    console.log("click");
+    prevBtn = document.getElementById("next_btn").addEventListener("click", nextObj);
+    nextBtn = document.getElementById("previous_btn").addEventListener("click", prevObj);
   }
